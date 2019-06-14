@@ -30,7 +30,7 @@ ul {
 }
 
 button {
-  margin-top: 2em;
+  margin-top: .5em;
   background-color: #181818;
   color: #028f8d;
   border-radius: 8px;
@@ -43,14 +43,9 @@ button:hover {
   background-color: #028f8d;
 }
 
-#timer{
+#timer, #question, #answers, #results, #start{
   margin-top: 1.25em;
 }
 
-#question {
-  margin-top: 1.25em;
-}
 
-#answers {
-  margin-top: 1.25em;
-}
+

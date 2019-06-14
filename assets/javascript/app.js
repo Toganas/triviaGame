@@ -27,7 +27,7 @@ function newQuestion() {
     (var i =0; i < triviaBank.array[j].bank.length; i++)
     $("#answers").append(`
     <ul>
-    <li> ${triviaBank.array[j].bank[i]} </li>
+    <li><button> ${triviaBank.array[j].bank[i]} </button></li>
     </ul>
     `)
     j++
@@ -40,14 +40,24 @@ function newQuestion() {
 var triviaBank = {
     array: [
     {question: "Who is the strongest female wizard in Fairy Tail?",
-    answer: "Erza",
+    correct: "Erza",
     bank: ["Lucy", "Erza", "Wendy", "Cana"]},
+
     {question: "What is the name of the Fairy Tail wizard from Edolas?",
-    answer: "Mystogan",
+    correct: "Mystogan",
     bank: ["Mystogan", "Laxus", "Gildarts", "Bickslow"]},
 ]
 }
 
+$(triviaBank.array.bank).click(hurray)
 
+function hurray(){
+    $("#result").append("Good job!")
+}
 
-console.log(triviaBank.array[1].bank);
+// do(
+//     $(bank).click(correct)
+// )
+
+// while (timer > 0)
+
