@@ -1,5 +1,5 @@
 
-// run this ever time a new question is asked
+// run this every time a new question is asked
 function newQuestion() {
 
     // countdown timer
