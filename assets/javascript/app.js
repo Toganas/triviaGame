@@ -11,14 +11,16 @@ function firstQuestion(){
 // run this every time a new question is asked
 function newQuestion() {
 
+    var remaining = "Time Remaining: "
+    
     // countdown timer
     var timer = 30;
-    $("#timer").append(timer);
+    $("#timer").append(remaining + timer);
     var seconds = setInterval(countdown, 1000);
 
     function countdown() {
         timer--
-        $("#timer").text(timer);
+        $("#timer").text(remaining + timer);
     }
 }
 
