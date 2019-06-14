@@ -10,8 +10,6 @@ function firstQuestion(){
 
 // run this every time a new question is asked
 function newQuestion() {
-
-    
     
     // countdown timer
     var remaining = "Time Remaining: "
@@ -23,12 +21,12 @@ function newQuestion() {
         timer--
         $("#timer").text(remaining + timer);
     }
-    $("#question").append(triviaBank.question);
+    $("#question").append(triviaBank.array[1].question);
     for 
-    (var i=0; i < triviaBank.bank.length; i++)
+    (var i=0; i < triviaBank.array[1].bank.length; i++)
     $("#answers").append(`
     <ul>
-    <li> ${triviaBank.array[i].bank[i]} </li>
+    <li> ${triviaBank.array[1].bank[i]} </li>
     </ul>
     `)
 
