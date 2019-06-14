@@ -5,7 +5,7 @@
   src: url("../font/CROWNT.TTF") format("truetype");
 } */
 body {
-  /* font-family: "CROWNT", "Times New Roman", sans-serif; */
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1.75em;
   color: #028f8d;
 }
@@ -30,6 +30,7 @@ ul {
 }
 
 button {
+  margin-top: 2em;
   background-color: #181818;
   color: #028f8d;
   border-radius: 8px;
