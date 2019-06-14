@@ -11,18 +11,28 @@ function firstQuestion(){
 // run this every time a new question is asked
 function newQuestion() {
 
-    var remaining = "Time Remaining: "
+    
     
     // countdown timer
+    var remaining = "Time Remaining: "
     var timer = 30;
     $("#timer").append(remaining + timer);
-    var seconds = setInterval(countdown, 1000);
+    setInterval(countdown, 1000);
 
     function countdown() {
         timer--
         $("#timer").text(remaining + timer);
     }
+
 }
 
-// newQuestion();
+// Question and Answer Bank
+
+var triviaBank = {
+    question: "Who is the strongest female wizard in Fairy Tail?",
+    answer: "Erza",
+    bank: "Lucy, Erza, Wendy, Cana"
+}
+
+console.log(triviaBank)
 
