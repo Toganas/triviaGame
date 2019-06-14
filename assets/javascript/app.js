@@ -8,15 +8,19 @@ function firstQuestion(){
     newQuestion()
 }
 
+// global variable to be used with triviaBank.array
+var j = 0
+
 // run this every time a new question is asked
 function newQuestion() {
     
     // countdown timer
-    var j= 0
+    
     var remaining = "Time Remaining: "
-    var timer = 30;
+    var timer = 5;
     $("#timer").append(remaining + timer);
     setInterval(countdown, 1000);
+    setTimeout(wrong, 6000);
 
     function countdown() {
         timer--
@@ -30,8 +34,7 @@ function newQuestion() {
     <li><button> ${triviaBank.array[j].bank[i]} </button></li>
     </ul>
     `)
-    j++
-
+    
     
 }
 
@@ -49,11 +52,11 @@ var triviaBank = {
 ]
 }
 
-$(triviaBank.array.bank).click(hurray)
+// $(triviaBank.array.bank).click(hurray)
 
-function hurray(){
-    $("#result").append("Good job!")
-}
+// function hurray(){
+//     $("#result").append("Good job!")
+// }
 
 // do(
 //     $(bank).click(correct)
@@ -61,3 +64,12 @@ function hurray(){
 
 // while (timer > 0)
 
+function wrong() {
+    $("#trivia").remove();
+    $("#result").append(`
+    <div>Better luck next time!</div>
+    <div>The actual answer was: ${triviaBank.array[j].correct}</div>
+    `);
+    j++
+}
+console.log(triviaBank.array[0].correct)

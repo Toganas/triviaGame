@@ -43,8 +43,12 @@ button:hover {
   background-color: #028f8d;
 }
 
-#timer, #question, #answers, #results, #start{
+#timer, #question, #answers, #start{
   margin-top: 1.25em;
+}
+
+#result{
+  margin-top: 5em;
 }
 
 
