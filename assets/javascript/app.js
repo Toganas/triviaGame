@@ -12,6 +12,7 @@ function firstQuestion(){
 function newQuestion() {
     
     // countdown timer
+    var j= 0
     var remaining = "Time Remaining: "
     var timer = 30;
     $("#timer").append(remaining + timer);
@@ -21,14 +22,15 @@ function newQuestion() {
         timer--
         $("#timer").text(remaining + timer);
     }
-    $("#question").append(triviaBank.array[1].question);
+    $("#question").append(triviaBank.array[j].question);
     for 
-    (var i=0; i < triviaBank.array[1].bank.length; i++)
+    (var i =0; i < triviaBank.array[j].bank.length; i++)
     $("#answers").append(`
     <ul>
-    <li> ${triviaBank.array[1].bank[i]} </li>
+    <li> ${triviaBank.array[j].bank[i]} </li>
     </ul>
     `)
+    j++
 
     
 }
