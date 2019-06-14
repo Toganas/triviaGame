@@ -42,3 +42,15 @@ button:hover {
   color: #181818;
   background-color: #028f8d;
 }
+
+#timer{
+  margin-top: 1.25em;
+}
+
+#question {
+  margin-top: 1.25em;
+}
+
+#answers {
+  margin-top: 1.25em;
+}
