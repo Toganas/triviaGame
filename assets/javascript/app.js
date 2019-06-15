@@ -5,10 +5,10 @@ var index = 0;
 var timeUp;
 var wins = 0;
 var losses = 0;
-var timer = 5;
+var timer = 30;
 var counting = "";
-// Remove Instructions, start game
 
+// Question and Answer Bank
 
 var triviaBank = [
     {
@@ -35,20 +35,25 @@ $("#start").on('click', function () {
 
 // run this every time a new question is asked
 function newQuestion(index) {
+    
     // clear the previous result
+    $("#result").empty();
     $("#question").empty();
     $("#answers").empty();
     // countdown timer
 
+    $("#timer").text("Time Remaining: " + 30)
     if (index < triviaBank.length) {
-        timer = 50;
+        timer = 30;
         countdown();
 
         //  putting the question on the page
         var h3 = $("<h3>");
         h3.text(triviaBank[index].question);
         $("#question").append(h3);
-  
+
+        // putting the answers in buttons
+
         var currentAnswers = triviaBank[index].bank;
         for (var i = 0; i < currentAnswers.length; i++) {
             var button = $("<button>");
@@ -58,16 +63,11 @@ function newQuestion(index) {
             button.addClass('answers')
             $("#answers").append(button);
         }
-
-
-
-
-
     }
     else {
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
-        "<p>" + "Correct: " + wins + "</p>" +
-        "<p>" + "Incorrect: " + losses + "</p>"+"</h3>")
+            "<p>" + "Correct: " + wins + "</p>" +
+            "<p>" + "Incorrect: " + losses + "</p>" + "</h3>")
 
     }
 
@@ -81,14 +81,12 @@ $(document).on('click', ".answers", function () {
     if (userAnswer === correctAnswer) {
         wins++
         console.log('wins ' + wins);
-        index++
-        newQuestion(index);
+        hurray();
     }
     else {
         losses++
         console.log('losses ' + losses)
-        index++
-        newQuestion(index);
+        wrong();
     }
     console.log(userAnswer);
     console.log(correctAnswer);
@@ -97,88 +95,55 @@ $(document).on('click', ".answers", function () {
 
 function countdown() {
     counting = setInterval(function () {
+        
         timer--;
         $("#timer").text("Time Remaining: " + timer);
         console.log(timer);
         if (timer === 0) {
             clearCountdown();
-            index++;
-            newQuestion(index);
-
+            wrong();
         }
 
     }, 1000);
 
-    // $("#timer").text(remaining);
 
-    // timer = 5;
-    // var remaining = `Time Remaining: ${timer}`
-    // $("#timer").append(remaining);
-
-    // timeUp = setTimeout(wrong, 6000);
 }
 function clearCountdown() {
     clearInterval(counting)
 }
 
-
-// function test() {
-//     if (".option" == triviaBank.array.correct) {
-//         timer = 0;
-//         hurray();
-//     }
-//     else {
-//         timer = 0;
-//         wrong();
-//         console.log(this)
-//     }
-// }
-
-// Question and Answer Bank
+function nextQuestion(){
+    newQuestion(index);
+}
+// Correct Answer
 
 
+function hurray() {
+    $("#question").empty();
+    $("#answers").empty();
+    $("#timer").empty();
+    clearCountdown();
+    $("#result").append(`
+    <div>Good job!  Way to go!</div>
+    <div>The answer was: ${triviaBank[index].correct}</div>
+    <img src = ${triviaBank[index].image}>`);
+    index++;
+    setTimeout(nextQuestion, 5000);
+    
+}
 
-
-// Correct answer
-// $("button").click(hurray)
-
-// console.log(click);
-
-// function hurray() {
-//     $("#question").empty();
-//     $("#answers").empty();
-//     $("#timer").empty();
-//     $("#result").append(`
-//     <div>Good job!  Way to go!</div>
-//     <div>The answer was: ${triviaBank.array[j].correct}</div>
-//     <img src = ${triviaBank.array[j].image}>`);
-//     wins++;
-//     j++;
-//     setTimeout(newQuestion, 5000)
-
-// }
 
 
 // Incorrect Answer
 
-// function wrong() {
-//     $("#question").empty();
-//     $("#answers").empty();
-//     $("#timer").empty();
-//     $("#result").append(`
-//     <div>Better luck next time!</div>
-//     <div>The answer was: ${triviaBank.array[j].correct}</div>
-//     <img src = ${triviaBank.array[j].image}>`);
-//     losses++;
-//     j++;
-//     setTimeout(newQuestion, 5000)
-
-// }
-// console.log(triviaBank.array[0].correct)
-
-// Code I don't know if I'm going to use
-// do(
-//     $(bank).click(correct)
-// )
-
-// while (timer > 0)
+function wrong() {
+    $("#question").empty();
+    $("#answers").empty();
+    $("#timer").empty();
+    $("#result").append(`
+    <div>Better luck next time!</div>
+    <div>The answer was: ${triviaBank.array[index].correct}</div>
+    <img src = ${triviaBank.array[index].image}>`);
+    index++;
+    setTimeout(nextQuestion, 5000);
+}
