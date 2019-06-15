@@ -16,11 +16,9 @@ ul {
 }
 
 /* scaling background image */
-#background {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+body{
+  /* background-image: url("../images/ftbackground2.jpg") */
+  background: #181818;
 }
 
 
