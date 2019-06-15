@@ -35,7 +35,7 @@ $("#start").on('click', function () {
 
 // run this every time a new question is asked
 function newQuestion(index) {
-    
+
     // clear the previous result
     $("#result").empty();
     $("#question").empty();
@@ -60,20 +60,29 @@ function newQuestion(index) {
             button.text(currentAnswers[i]);
             button.attr('data-userAnswer', currentAnswers[i]);
             button.attr("data-correctAnswer", triviaBank[index].correct);
-            button.addClass('answers')
+            button.addClass('answers');
             $("#answers").append(button);
         }
     }
     else {
+        clearCountdown();
+        $("#timer").empty();
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
             "<p>" + "Correct: " + wins + "</p>" +
             "<p>" + "Incorrect: " + losses + "</p>" + "</h3>")
-
+        var playAgain = $("<button>");
+        playAgain.text("Play Again");
+        playAgain.addClass('reset');
+        $("#final").append(playAgain);
     }
-
-
 }
-
+$(document).on("click", ".reset", function () {
+    $("#final").empty();
+    index = 0;
+    wins = 0;
+    losses = 0;
+    newQuestion(index)
+}),
 
 $(document).on('click', ".answers", function () {
     var userAnswer = $(this).attr('data-userAnswer');
@@ -95,7 +104,7 @@ $(document).on('click', ".answers", function () {
 
 function countdown() {
     counting = setInterval(function () {
-        
+
         timer--;
         $("#timer").text("Time Remaining: " + timer);
         console.log(timer);
@@ -112,7 +121,7 @@ function clearCountdown() {
     clearInterval(counting)
 }
 
-function nextQuestion(){
+function nextQuestion() {
     newQuestion(index);
 }
 // Correct Answer
@@ -129,7 +138,7 @@ function hurray() {
     <img src = ${triviaBank[index].image}>`);
     index++;
     setTimeout(nextQuestion, 5000);
-    
+
 }
 
 
@@ -140,10 +149,11 @@ function wrong() {
     $("#question").empty();
     $("#answers").empty();
     $("#timer").empty();
+    clearCountdown();
     $("#result").append(`
     <div>Better luck next time!</div>
-    <div>The answer was: ${triviaBank.array[index].correct}</div>
-    <img src = ${triviaBank.array[index].image}>`);
+    <div>The answer was: ${triviaBank[index].correct}</div>
+    <img src = ${triviaBank[index].image}>`);
     index++;
     setTimeout(nextQuestion, 5000);
 }
