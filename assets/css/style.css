@@ -29,8 +29,10 @@ ul {
 #instructions {
     height: 50%;
     border: 1px solid #028f8d;
+    
 }
 
+/* buttons */
 button {
   margin-top: .5em;
   background-color: #181818;
@@ -45,16 +47,11 @@ button:hover {
   background-color: #028f8d;
 }
 
-#timer, #question, #answers, #start{
-  margin-top: 1.25em;
-}
-
-#result{
-  /* margin-top: 10%; */
-}
-
 .option {
   width: 25%
 }
 
+#title{
+  margin-bottom: 1em;
+}
 

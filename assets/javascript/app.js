@@ -12,8 +12,8 @@ function firstQuestion(){
 
 var j = 0;
 var timeUp;
-var wins = 0
-var losses = 0
+var wins = 0;
+var losses = 0;
 
 // run this every time a new question is asked
 function newQuestion() {
@@ -31,8 +31,7 @@ function newQuestion() {
         timer--
         $("#timer").text(remaining + timer);
         if (timer===0) {
-            clearInterval(counting);
-        }
+            clearInterval(counting)}
     }
 
     //  putting the question on the page
@@ -42,12 +41,21 @@ function newQuestion() {
     (var i =0; i < triviaBank.array[j].bank.length; i++)
     $("#answers").append(`
     <ul>
-    <li><button class="option"> ${triviaBank.array[j].bank[i]} </button></li>
+    <li><button onclick='test()' class='option'> ${triviaBank.array[j].bank[i]} </button></li>
     </ul>
     `)
-    
-    
-    
+}
+
+function test() {
+    if (".option" == triviaBank.array.correct) {
+        timer = 0;
+        hurray();
+    }
+    else {
+        timer = 0;
+        wrong();
+        console.log(this)
+    }
 }
 
 // Question and Answer Bank
@@ -61,24 +69,29 @@ var triviaBank = {
 
     {question: "What is the name of the Fairy Tail wizard from Edolas?",
     correct: "Mystogan",
-    bank: ["Mystogan", "Laxus", "Gildarts", "Bickslow"]},
+    bank: ["Mystogan", "Laxus", "Gildarts", "Bickslow"],
+    image: "assets/images/mystogan.jpg"}
 ]
 }
 
 
 // Correct answer
-$(".option").click(hurray)
+// $("button").click(hurray)
+
+// console.log(click);
 
 function hurray(){
     $("#question").empty();
     $("#answers").empty();
     $("#timer").empty();
-    clearTimeout(timeUp);
     $("#result").append(`
-    <div>Good job, you got that right!</div>
-    `)
+    <div>Good job!  Way to go!</div>
+    <div>The answer was: ${triviaBank.array[j].correct}</div>
+    <img src = ${triviaBank.array[j].image}>`);
     wins++;
     j++;
+    setTimeout(newQuestion, 5000)
+
 }
 
 
@@ -90,7 +103,7 @@ function wrong() {
     $("#timer").empty();
     $("#result").append(`
     <div>Better luck next time!</div>
-    <div>The actual answer was: ${triviaBank.array[j].correct}</div>
+    <div>The answer was: ${triviaBank.array[j].correct}</div>
     <img src = ${triviaBank.array[j].image}>`);
     losses++;
     j++;
