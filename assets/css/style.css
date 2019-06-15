@@ -8,6 +8,7 @@ body {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.75em;
   color: #028f8d;
+  overflow: hidden;
 }
 
 /* Styling the Answers */
@@ -16,9 +17,12 @@ ul {
 }
 
 /* scaling background image */
-body{
-  /* background-image: url("../images/ftbackground2.jpg") */
-  background: #181818;
+#background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 
@@ -46,8 +50,11 @@ button:hover {
 }
 
 #result{
-  margin-top: 5em;
+  /* margin-top: 10%; */
 }
 
+.option {
+  width: 25%
+}
 
 

@@ -17,7 +17,8 @@ var losses = 0
 
 // run this every time a new question is asked
 function newQuestion() {
-    
+    // clear the previous result
+    $("#result").empty();
     // countdown timer
     
     var remaining = "Time Remaining: "
@@ -33,6 +34,9 @@ function newQuestion() {
             clearInterval(counting);
         }
     }
+
+    //  putting the question on the page
+
     $("#question").append(triviaBank.array[j].question);
     for 
     (var i =0; i < triviaBank.array[j].bank.length; i++)
@@ -53,7 +57,7 @@ var triviaBank = {
     {question: "Who is the strongest female wizard in Fairy Tail?",
     correct: "Erza",
     bank: ["Lucy", "Erza", "Wendy", "Cana"],
-    image: "../images/erza.png"},
+    image: "assets/images/erza.png"},
 
     {question: "What is the name of the Fairy Tail wizard from Edolas?",
     correct: "Mystogan",
@@ -61,6 +65,8 @@ var triviaBank = {
 ]
 }
 
+
+// Correct answer
 $(".option").click(hurray)
 
 function hurray(){
@@ -75,11 +81,8 @@ function hurray(){
     j++;
 }
 
-// do(
-//     $(bank).click(correct)
-// )
 
-// while (timer > 0)
+// Incorrect Answer
 
 function wrong() {
     $("#question").empty();
@@ -88,10 +91,17 @@ function wrong() {
     $("#result").append(`
     <div>Better luck next time!</div>
     <div>The actual answer was: ${triviaBank.array[j].correct}</div>
-    <img src = ${triviaBank.array[j].image}`);
+    <img src = ${triviaBank.array[j].image}>`);
     losses++;
     j++;
     setTimeout(newQuestion,5000)
     
 }
-console.log(triviaBank.array[0].correct)
+// console.log(triviaBank.array[0].correct)
+
+// Code I don't know if I'm going to use
+// do(
+//     $(bank).click(correct)
+// )
+
+// while (timer > 0)
