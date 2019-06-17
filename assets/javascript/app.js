@@ -22,7 +22,6 @@ var counting = "";
 //         i = triviaBank[j];
 //         triviaBank[shuffle] = i;
 //         triviaBank[j] = t;
-//         console.log();
 //     }
 
 // }
@@ -105,7 +104,7 @@ $("#start").on('click', function () {
 // run this every time a new question is asked
 function newQuestion(index) {
 
-    
+
     // shuffleQuestion();
 
     // clear the previous result
@@ -159,24 +158,20 @@ $(document).on("click", ".reset", function () {
     losses = 0;
     newQuestion(index)
 }),
-// testing whether the click is correct or not
+    // testing whether the click is correct or not
 
     $(document).on('click', ".answers", function () {
         var userAnswer = $(this).attr('data-userAnswer');
         var correctAnswer = $(this).attr("data-correctAnswer");
         if (userAnswer === correctAnswer) {
             wins++
-            console.log('wins ' + wins);
             hurray();
         }
         else {
             losses++
-            console.log('losses ' + losses)
             wrong();
         }
-        console.log(userAnswer);
-        console.log(correctAnswer);
-    })
+    });
 
 
 function countdown() {
@@ -184,7 +179,6 @@ function countdown() {
 
         timer--;
         $("#timer").text("Time Remaining: " + timer);
-        console.log(timer);
         if (timer === 0) {
             clearCountdown();
             wrong();
