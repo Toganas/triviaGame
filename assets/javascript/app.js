@@ -8,6 +8,25 @@ var losses = 0;
 var timer = 30;
 var counting = "";
 
+
+// Shuffling Questions
+
+
+function shuffleQuestion(triviaBank) {
+    var shuffle = triviaBank.length, t, i;
+
+    while (shuffle) {
+
+        i = Math.floor(Math.random() * shuffle--);
+
+        t = triviaBank[shuffle];
+        triviaBank[shuffle] = triviaBank[i];
+        triviaBank[i] = t;
+
+    }
+    return triviaBank;
+
+}
 // Question and Answer Bank
 
 var triviaBank = [
@@ -23,7 +42,7 @@ var triviaBank = [
         bank: ["Mystogan", "Laxus", "Gildarts", "Bickslow"],
         image: "assets/images/mystogan.jpg"
     },
-    {   
+    {
         question: "Who is the dragon slayer mage that excels in healing magic?",
         correct: "Wendy",
         bank: ["Gajeel", "Natsu", "Wendy", "Sting"],
@@ -86,9 +105,9 @@ $("#start").on('click', function () {
 function newQuestion(index) {
 
     // clear the previous result
+
     $("#result").empty();
-    $("#question").empty();
-    $("#answers").empty();
+
     // countdown timer
 
     $("#timer").text("Time Remaining: " + 30)
@@ -113,13 +132,14 @@ function newQuestion(index) {
             $("#answers").append(button);
         }
     }
+    // If no answer after 30 seconds
     else {
         clearCountdown();
         $("#timer").empty();
         var unanswered = 10 - wins - losses;
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
             "<p>" + "Correct: " + wins + "</p>" +
-            "<p>" + "Incorrect: " + losses + "</p>" + 
+            "<p>" + "Incorrect: " + losses + "</p>" +
             "<p>" + "Unanswered: " + unanswered + "</h3>")
         var playAgain = $("<button>");
         playAgain.text("Play Again");
@@ -127,6 +147,7 @@ function newQuestion(index) {
         $("#final").append(playAgain);
     }
 }
+// Resetting the Trivia
 $(document).on("click", ".reset", function () {
     $("#final").empty();
     index = 0;
@@ -134,23 +155,24 @@ $(document).on("click", ".reset", function () {
     losses = 0;
     newQuestion(index)
 }),
+// testing whether the click is correct or not
 
-$(document).on('click', ".answers", function () {
-    var userAnswer = $(this).attr('data-userAnswer');
-    var correctAnswer = $(this).attr("data-correctAnswer");
-    if (userAnswer === correctAnswer) {
-        wins++
-        console.log('wins ' + wins);
-        hurray();
-    }
-    else {
-        losses++
-        console.log('losses ' + losses)
-        wrong();
-    }
-    console.log(userAnswer);
-    console.log(correctAnswer);
-})
+    $(document).on('click', ".answers", function () {
+        var userAnswer = $(this).attr('data-userAnswer');
+        var correctAnswer = $(this).attr("data-correctAnswer");
+        if (userAnswer === correctAnswer) {
+            wins++
+            console.log('wins ' + wins);
+            hurray();
+        }
+        else {
+            losses++
+            console.log('losses ' + losses)
+            wrong();
+        }
+        console.log(userAnswer);
+        console.log(correctAnswer);
+    })
 
 
 function countdown() {
@@ -209,16 +231,3 @@ function wrong() {
     setTimeout(nextQuestion, 5000);
 }
 
-// Shuffling Questions
-
-
-// function shuffle (question) {
-//     var shuffle = triviaBank.question.length, t, i;
-
-//         while(shuffle) {
-
-//             i=Math.floor(Math.random() *shuffle--);
-//             t=triviaBank.question
-//         }
-
-// }
