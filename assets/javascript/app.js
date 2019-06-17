@@ -11,22 +11,23 @@ var counting = "";
 
 // Shuffling Questions
 
+// function shuffleQuestion(triviaBank) {
+//     var shuffle = triviaBank.length, j, t, i;
+//     if (shuffle === 0) return false;
+//     while (--shuffle) {
 
-function shuffleQuestion(triviaBank) {
-    var shuffle = triviaBank.length, t, i;
+//         j = Math.floor(Math.random() * shuffle--);
 
-    while (shuffle) {
+//         t = triviaBank[shuffle];
+//         i = triviaBank[j];
+//         triviaBank[shuffle] = i;
+//         triviaBank[j] = t;
+//         console.log();
+//     }
 
-        i = Math.floor(Math.random() * shuffle--);
+// }
 
-        t = triviaBank[shuffle];
-        triviaBank[shuffle] = triviaBank[i];
-        triviaBank[i] = t;
 
-    }
-    return triviaBank;
-
-}
 // Question and Answer Bank
 
 var triviaBank = [
@@ -103,6 +104,9 @@ $("#start").on('click', function () {
 
 // run this every time a new question is asked
 function newQuestion(index) {
+
+    
+    // shuffleQuestion();
 
     // clear the previous result
 
