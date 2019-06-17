@@ -11,21 +11,35 @@ var counting = "";
 
 // Shuffling Questions
 
-// function shuffleQuestion(triviaBank) {
-//     var shuffle = triviaBank.length, j, t, i;
-//     if (shuffle === 0) return false;
-//     while (--shuffle) {
+function shuffleQuestion() {
+    var shuffle = triviaBank.length, t, i;
+    while (shuffle) {
+        i = Math.floor(Math.random() * shuffle--);
+        t = triviaBank[shuffle];
+        triviaBank[shuffle] = triviaBank[i];
+        triviaBank[i] = t;
+    }
+    return triviaBank;
+}
+// function shuffle() {
+//     var m = array.length, t, i;
 
-//         j = Math.floor(Math.random() * shuffle--);
 
-//         t = triviaBank[shuffle];
-//         i = triviaBank[j];
-//         triviaBank[shuffle] = i;
-//         triviaBank[j] = t;
+//     // While there remain elements to shuffle…
+//     while (m) {
+
+//         // Pick a remaining element…
+//         i = Math.floor(Math.random() * m--);
+
+//         // And swap it with the current element.
+//         t = array[m];
+//         array[m] = array[i];
+//         array[i] = t;
 //     }
 
-// }
+//     return array;
 
+// }
 
 // Question and Answer Bank
 
@@ -105,7 +119,7 @@ $("#start").on('click', function () {
 function newQuestion(index) {
 
 
-    // shuffleQuestion();
+    shuffleQuestion();
 
     // clear the previous result
 
@@ -207,7 +221,7 @@ function hurray() {
     <div>Good job!  Way to go!</div>
     <div>The answer was: ${triviaBank[index].correct}</div>
     <img src = ${triviaBank[index].image}>`);
-    index++;
+    // index++;
     setTimeout(nextQuestion, 5000);
 
 }
