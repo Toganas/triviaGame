@@ -7,7 +7,7 @@ var wins = 0;
 var losses = 0;
 var timer = 30;
 var counting = "";
-var unsanswered= 0;
+
 
 // Question and Answer Bank
 
@@ -119,8 +119,7 @@ function newQuestion(index) {
         $("#timer").empty();
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
             "<p>" + "Correct: " + wins + "</p>" +
-            "<p>" + "Incorrect: " + losses + "</p>" +
-            "<p>" + "Unanswered: " + unsanswered + "</p>" + "</h3>")
+            "<p>" + "Incorrect: " + losses + "</p>" + "</h3>")
         var playAgain = $("<button>");
         playAgain.text("Play Again");
         playAgain.addClass('reset');
@@ -162,7 +161,6 @@ function countdown() {
         if (timer === 0) {
             clearCountdown();
             wrong();
-            unsanswered++;
         }
 
     }, 1000);
@@ -208,4 +206,18 @@ function wrong() {
     <img src = ${triviaBank[index].image}>`);
     index++;
     setTimeout(nextQuestion, 5000);
+}
+
+// Shuffling Questions
+
+
+function shuffle (question) {
+    var shuffle = triviaBank.question.length, t, i;
+
+        while(shuffle) {
+
+            i=Math.floor(Math.random() *shuffle--);
+            t=triviaBank.question
+        }
+
 }
