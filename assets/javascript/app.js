@@ -7,6 +7,7 @@ var wins = 0;
 var losses = 0;
 var timer = 30;
 var counting = "";
+var unsanswered= 0;
 
 // Question and Answer Bank
 
@@ -22,7 +23,56 @@ var triviaBank = [
         correct: "Mystogan",
         bank: ["Mystogan", "Laxus", "Gildarts", "Bickslow"],
         image: "assets/images/mystogan.jpg"
+    },
+    {   
+        question: "Who is the dragon slayer mage that excels in healing magic?",
+        correct: "Wendy",
+        bank: ["Gajeel", "Natsu", "Wendy", "Sting"],
+        image: "assets/images/wendy_marvell.png",
+    },
+    {
+        question: "Who was the founding guild master of Fairy Tail?",
+        correct: "Mavis",
+        bank: ["Gildarts", "Makarov", "Mavis", "Macao"],
+        image: "assets/images/mavis.jpg"
+    },
+    {
+        question: "Which wizard likes to strip any time they're in battle?",
+        correct: "Gray",
+        bank: ["Gray", "Natsu", "Lucy", "Lyon"],
+        image: "assets/images/gray.jpg"
+    },
+    {
+        question: "Which ice wizard is in Lamia Scale?",
+        correct: "Lyon",
+        bank: ["Gray", "Ur", "Ultear", "Lyon"],
+        image: "assets/images/lyon.png"
+    },
+    {
+        question: "During the 7 year absence of Natsu, Makarov, etc., which guild became known as the most powerful?",
+        correct: "Sabertooth",
+        bank: ["Lamia Scale", "Blue Pegasus", "Tartaros", "Sabertooth"],
+        image: "assets/images/sabertooth.png"
+    },
+    {
+        question: "What are cats that can fly and talk called?",
+        correct: "Exceeds",
+        bank: ["Meowsicals", "Exceeds", "Harpies", "Kitties"],
+        image: "assets/images/exceed.jpg"
+    },
+    {
+        question: "What does E.N.D. stand for?",
+        correct: "Etherious Natsu Dragneel",
+        bank: ["Endless Night Demon", "Eternal Nightmare Dragon", "Everlasting Normal Daylight", "Etherious Natsu Dragneel"],
+        image: "assets/images/natsu.jpg"
+    },
+    {
+        question: "Who is Natsu's older brother?",
+        correct: "Zeref",
+        bank: ["Laxus", "Jellal", "Zeref", "Romeo"],
+        image: "assets/images/zeref.jpg"
     }
+
 ]
 
 
@@ -69,7 +119,8 @@ function newQuestion(index) {
         $("#timer").empty();
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
             "<p>" + "Correct: " + wins + "</p>" +
-            "<p>" + "Incorrect: " + losses + "</p>" + "</h3>")
+            "<p>" + "Incorrect: " + losses + "</p>" +
+            "<p>" + "Unanswered: " + unsanswered + "</p>" + "</h3>")
         var playAgain = $("<button>");
         playAgain.text("Play Again");
         playAgain.addClass('reset');
@@ -111,6 +162,7 @@ function countdown() {
         if (timer === 0) {
             clearCountdown();
             wrong();
+            unsanswered++;
         }
 
     }, 1000);
