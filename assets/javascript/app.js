@@ -8,7 +8,6 @@ var losses = 0;
 var timer = 30;
 var counting = "";
 
-
 // Question and Answer Bank
 
 var triviaBank = [
@@ -117,9 +116,11 @@ function newQuestion(index) {
     else {
         clearCountdown();
         $("#timer").empty();
+        var unanswered = 10 - wins - losses;
         $("#final").html("<h3>" + "<p>" + "Your final score is:" + "</p>" +
             "<p>" + "Correct: " + wins + "</p>" +
-            "<p>" + "Incorrect: " + losses + "</p>" + "</h3>")
+            "<p>" + "Incorrect: " + losses + "</p>" + 
+            "<p>" + "Unanswered: " + unanswered + "</h3>")
         var playAgain = $("<button>");
         playAgain.text("Play Again");
         playAgain.addClass('reset');
@@ -211,13 +212,13 @@ function wrong() {
 // Shuffling Questions
 
 
-function shuffle (question) {
-    var shuffle = triviaBank.question.length, t, i;
+// function shuffle (question) {
+//     var shuffle = triviaBank.question.length, t, i;
 
-        while(shuffle) {
+//         while(shuffle) {
 
-            i=Math.floor(Math.random() *shuffle--);
-            t=triviaBank.question
-        }
+//             i=Math.floor(Math.random() *shuffle--);
+//             t=triviaBank.question
+//         }
 
-}
+// }
