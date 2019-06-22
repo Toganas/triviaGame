@@ -25,16 +25,16 @@ function shuffleQuestion() {
 
 // Shuffling Answers
 
-// function shuffleAnswers() {
-//     var shuffle = triviaBank[index].bank.length, t, i;
-//     while (shuffle) {
-//         i=Math.floor(Math.random() * shuffle --);
-//         t=triviaBank[index].bank[shuffle];
-//         triviaBank[index][shuffle] = triviaBank[index][i];
-//         triviaBank[index][i] = t;
-//     }
-//     return triviaBank[index];
-// }
+function shuffleAnswers() {
+    var shuffle = triviaBank[index].bank.length, t, i;
+    while (shuffle) {
+        i=Math.floor(Math.random() * shuffle --);
+        t=triviaBank[index].bank[shuffle];
+        triviaBank[index].bank[shuffle] = triviaBank[index].bank[i];
+        triviaBank[index].bank[i] = t;
+    }
+    return triviaBank[index].bank;
+}
 // Question and Answer Bank
 
 var triviaBank = [
@@ -113,9 +113,9 @@ $("#start").on('click', function () {
 function newQuestion(index) {
 
 
-   
+    
 
-    // shuffleAnswers();
+ 
 
     // clear the previous result
 
@@ -127,14 +127,14 @@ function newQuestion(index) {
     if (index < triviaBank.length) {
         timer = 30;
         countdown();
-
+        
         //  putting the question on the page
         var h3 = $("<h3>");
         h3.text(triviaBank[index].question);
         $("#question").append(h3);
 
         // putting the answers in buttons
-
+        shuffleAnswers();
         var currentAnswers = triviaBank[index].bank;
         for (var i = 0; i < currentAnswers.length; i++) {
             var button = $("<button>");
@@ -206,6 +206,7 @@ function clearCountdown() {
 
 function nextQuestion() {
     newQuestion(index);
+    
 }
 // Correct Answer
 
@@ -242,3 +243,4 @@ function wrong() {
 }
 
  shuffleQuestion();
+ shuffleAnswers();
