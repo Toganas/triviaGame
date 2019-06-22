@@ -21,26 +21,20 @@ function shuffleQuestion() {
     }
     return triviaBank;
 }
-// function shuffle() {
-//     var m = array.length, t, i;
 
 
-//     // While there remain elements to shuffle…
-//     while (m) {
+// Shuffling Answers
 
-//         // Pick a remaining element…
-//         i = Math.floor(Math.random() * m--);
-
-//         // And swap it with the current element.
-//         t = array[m];
-//         array[m] = array[i];
-//         array[i] = t;
+// function shuffleAnswers() {
+//     var shuffle = triviaBank[index].bank.length, t, i;
+//     while (shuffle) {
+//         i=Math.floor(Math.random() * shuffle --);
+//         t=triviaBank[index].bank[shuffle];
+//         triviaBank[index][shuffle] = triviaBank[index][i];
+//         triviaBank[index][i] = t;
 //     }
-
-//     return array;
-
+//     return triviaBank[index];
 // }
-
 // Question and Answer Bank
 
 var triviaBank = [
@@ -119,7 +113,9 @@ $("#start").on('click', function () {
 function newQuestion(index) {
 
 
-    shuffleQuestion();
+   
+
+    // shuffleAnswers();
 
     // clear the previous result
 
@@ -170,7 +166,9 @@ $(document).on("click", ".reset", function () {
     index = 0;
     wins = 0;
     losses = 0;
-    newQuestion(index)
+    shuffleQuestion();
+    newQuestion(index);
+    
 }),
     // testing whether the click is correct or not
 
@@ -221,7 +219,7 @@ function hurray() {
     <div>Good job!  Way to go!</div>
     <div>The answer was: ${triviaBank[index].correct}</div>
     <img src = ${triviaBank[index].image}>`);
-    // index++;
+    index++;
     setTimeout(nextQuestion, 5000);
 
 }
@@ -243,3 +241,4 @@ function wrong() {
     setTimeout(nextQuestion, 5000);
 }
 
+ shuffleQuestion();
